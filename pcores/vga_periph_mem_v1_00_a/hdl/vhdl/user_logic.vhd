@@ -322,10 +322,44 @@ architecture IMP of user_logic is
   signal unit_addr           : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0);--15+6+1
   signal reg_we              : std_logic;
 
+--  signal bus2IP_Addr		: in  std_logic_vector(C_SLV_AWIDTH-1 downto 0);
+--  signal bus2IP_CS			: in  std_logic_vector(C_NUM_MEM-1 downto 0);
+--  signal bus2IP_RNW			: in  std_logic;
+	signal  Global_WE		: std_logic;
+	signal T_WE				: std_logic;
+	signal G_WE				: std_logic;
+	signal R_WE				: std_logic;
+
 begin
   --USER logic implementation added here
+  
+Global_WE <= Bus2IP_RNW and Bus2IP_CS(0 downto 0);
+--0 1 2
+  
+  
+  
   unit_sel  <= Bus2IP_Addr(25 downto 24);
   unit_addr <= Bus2IP_Addr(GRAPH_MEM_ADDR_WIDTH+2-1 downto 2);
+  
+  
+--  case unit_sel is
+--	when "00" => 
+--		T_WE <= '1';
+--		G_WE <= '0';
+--		R_WE <= '0';
+--	when "01" => 
+--		G_WE <= '1';
+--		T_WE <= '0';
+--		R_WE <= '0';
+--	when "10" => 
+--		R_WE <= '1';
+--		T_WE <= '0';
+--		G_WE <= '0';
+--	when others => 
+--		T_WE <= '0';
+--		G_WE <= '0';
+--		R_WE <= '0';
+--  end case;
 
   pixel_address <= unit_addr;
   pixel_value   <= Bus2IP_Data(GRAPH_MEM_DATA_WIDTH-1 downto 0);
