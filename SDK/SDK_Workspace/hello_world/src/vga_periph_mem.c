@@ -5,6 +5,7 @@
 * Date:              Wed Mar 05 10:25:21 2014 (by Create and Import Peripheral Wizard)
 *****************************************************************************/
 
+#include "xparameters.h"
 
 /***************************** Include Files *******************************/
 
@@ -35,6 +36,19 @@ void clear_graphics_screen(Xuint32 BaseAddress){
 	for (i = 0; i < 9600; i++){
 	    VGA_PERIPH_MEM_mWriteMemory(BaseAddress + GRAPHICS_MEM_OFF + i*4, 0x0);
 	}
+}
+
+void clear_screen(Xuint32 BaseAddress){
+	clear_graphics_screen(BaseAddress);
+	clear_text_screen(BaseAddress);
+}
+
+void set_background_color(int x){
+    VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x14, x);// background color 5
+}
+
+void set_foreground_color(int x){
+    VGA_PERIPH_MEM_mWriteMemory(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR + 0x10, x);// foreground 4
 }
 
 void draw_square(Xuint32 BaseAddress){
