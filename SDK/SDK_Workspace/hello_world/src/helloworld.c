@@ -40,7 +40,7 @@
 #include "xparameters.h"
 #include "xio.h"
 #include "vga_periph_mem.h"
-
+#include <time.h>
 
 void print(char *str);
 
@@ -73,8 +73,36 @@ int main()
     //clear_text_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
     //clear_graphics_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
     //clear_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
+    int x, t, y;
+    x = 0;
+    y = 0;
+    while(1){
+		clear_text_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
+    	if (x < 160- 42 - 3)
+		{
+    		x++;
+    	} else
+    	{
+    		if(y < 160 - 45)
+    		{
+    			y++;
+    		} else
+    		{
+    			x = 0;
+    			y = 0;
+    		}
 
+    	}
+		set_cursor(640 + x - y);
+		print_string(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR, string_x, 12);
 
+		t = 500000;
+		while(t > 0)
+		{
+			t--;
+		}
+		clear_text_screen(XPAR_VGA_PERIPH_MEM_0_S_AXI_MEM0_BASEADDR);
+    	    }
 
     return 0;
 }

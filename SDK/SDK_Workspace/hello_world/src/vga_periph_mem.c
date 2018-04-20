@@ -17,6 +17,11 @@ void set_cursor(Xuint32 new_value){
 	cursor_position = new_value;
 }
 
+
+Xuint32 get_cursor(){
+	return cursor_position;
+}
+
 void clear_text_screen(Xuint32 BaseAddress){
 	int i;
 	for (i = 0; i < 4800; i++){
