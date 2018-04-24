@@ -128,6 +128,7 @@ entity user_logic is
     red_o          : out std_logic_vector(7 downto 0);
     green_o        : out std_logic_vector(7 downto 0);
     blue_o         : out std_logic_vector(7 downto 0);
+	o_system_start_irq : out std_logic;
     -- ADD USER PORTS ABOVE THIS LINE ------------------
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
@@ -191,6 +192,9 @@ architecture IMP of user_logic is
   constant REG_ADDR_04       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0) := conv_std_logic_vector( 4, GRAPH_MEM_ADDR_WIDTH);
   constant REG_ADDR_05       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0) := conv_std_logic_vector( 5, GRAPH_MEM_ADDR_WIDTH);
   constant REG_ADDR_06       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0) := conv_std_logic_vector( 6, GRAPH_MEM_ADDR_WIDTH);
+  --MI DODALI
+  constant REG_ADDR_07       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0) := conv_std_logic_vector( 7, GRAPH_MEM_ADDR_WIDTH);
+  constant REG_ADDR_08       : std_logic_vector(GRAPH_MEM_ADDR_WIDTH-1 downto 0) := conv_std_logic_vector( 8, GRAPH_MEM_ADDR_WIDTH);
   
   constant update_period     : std_logic_vector(31 downto 0) := conv_std_logic_vector(1, 32);
   
@@ -311,6 +315,11 @@ architecture IMP of user_logic is
   signal foreground_color    : std_logic_vector(23 downto 0);
   signal background_color    : std_logic_vector(23 downto 0);
   signal frame_color         : std_logic_vector(23 downto 0);
+  --MI DODALI
+  signal counter        	 : std_logic_vector(31 downto 0);
+  signal ir_en   			 : std_logic_vector(0);
+  signal tc 				 : std_logic;
+  signal s_system_start_irq  : std_logic;
   
   signal vga_vsync_s         : std_logic;
   
@@ -371,6 +380,17 @@ Global_WE <= Bus2IP_RNW and Bus2IP_CS(0 downto 0);
   
   reg_we       <= '1' when ((Bus2IP_WrCE(0) = '1') and (unit_sel = "00")) else '0';
   
+  process(dir_pixel_row)
+  begin
+
+  if (dir_pixel_row = counter(10 downto 0)) then
+	tc <= '1';
+	end if;
+		
+		s_system_start_irq <= ir_en and tc;
+
+  end process;
+  o_system_start_irq <= s_system_start_irq;
   
   process (Bus2IP_Clk, Bus2IP_Resetn) 
   begin
@@ -393,6 +413,9 @@ Global_WE <= Bus2IP_RNW and Bus2IP_CS(0 downto 0);
             when REG_ADDR_04 => foreground_color <= Bus2IP_Data(23 downto 0);
             when REG_ADDR_05 => background_color <= Bus2IP_Data(23 downto 0);
             when REG_ADDR_06 => frame_color      <= Bus2IP_Data(23 downto 0);
+			--MI DODALI
+            when REG_ADDR_07 => counter      <= Bus2IP_Data(31 downto 0);
+            when REG_ADDR_08 => ir_en      <= Bus2IP_Data(0);
             when others => null;
           end case;
         end if;

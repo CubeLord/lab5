@@ -27,3 +27,57 @@ rm -f simgen.log
 rm -f __xps/ise/_xmsgs/simgen.xmsgs
 rm -f _impact.cmd
 Done!
+Xilinx Platform Studio (XPS)
+Xilinx EDK 14.6 Build EDK_P.68d
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Overriding Xilinx file <TextEditor.cfg> with local file <C:/Xilinx/14.6/ISE_DS/EDK/data/TextEditor.cfg>
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Make instance vga_periph_mem_0 port o_system_start_irq external with net as port name
+Instance vga_periph_mem_0 port o_system_start_irq connector undefined, using vga_periph_mem_0_o_system_start_irq
+Make instance vga_periph_mem_0 port o_system_start_irq external with net as port name
+Instance vga_periph_mem_0 port o_system_start_irq connector undefined, using vga_periph_mem_0_o_system_start_irq
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui
+Writing filter settings....
+Done writing filter settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.filters
+Done writing Tab View settings to:
+	D:\RA162-2015\lab5-2\lab5\etc\system.gui

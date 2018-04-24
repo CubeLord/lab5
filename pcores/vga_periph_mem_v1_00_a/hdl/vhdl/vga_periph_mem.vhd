@@ -172,7 +172,7 @@ entity vga_periph_mem is
     green_o        : out std_logic_vector(7 downto 0);
     blue_o         : out std_logic_vector(7 downto 0);
     -- ADD USER PORTS ABOVE THIS LINE ------------------
-
+	o_system_start_irq:out std_logic;
     -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol ports, do not add to or delete
     S_AXI_ACLK                     : in  std_logic;
@@ -288,6 +288,7 @@ architecture IMP of vga_periph_mem is
   signal user_IP2Bus_RdAck              : std_logic;
   signal user_IP2Bus_WrAck              : std_logic;
   signal user_IP2Bus_Error              : std_logic;
+  signal s_system_start_irq				: std_logic;
 
 begin
 
@@ -403,6 +404,8 @@ begin
       red_o          => red_o,
       green_o        => green_o,
       blue_o         => blue_o,
+	  --MI DODALI
+	  o_system_start_irq => o_system_start_irq,
       -- MAP USER PORTS ABOVE THIS LINE ------------------
 
       Bus2IP_Clk                     => ipif_Bus2IP_Clk,
